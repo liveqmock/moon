@@ -51,20 +51,16 @@ function filter(treeId, parentNode, childNodes) {
  }
  var ztree;
 $(document).ready(function(){
-	$("#rmenu").menu();
 	$.fn.zTree.init($("#roleTree"), setting,znodes);
 	 ztree = $.fn.zTree.getZTreeObj("roleTree");
 });
 
 function addRole(){
 	$("#roleForm").dialog({
-		modal:true,
 		title:'添加角色',
-		buttonAlign:'center',
-		show:'flod',
-		hide: "explode",
 		buttons:[{
 			text:'添加',
+			css:"btn btn-primary",
 			click:function(){
 				$("#roleForm").ajaxSubmitForm(contextPath+"/role/add",{"role.parentId":$.fn.zTree.getZTreeObj("roleTree").getSelectedNodes()[0].id},
 						function(){
@@ -78,6 +74,7 @@ function addRole(){
 			}
 		},{
 			text:'取消',
+			css:"btn",
 			click:function(){
 				$("#roleForm").dialog("close");
 				$("#roleForm").reset();
@@ -102,13 +99,10 @@ function deleteRole(){
 function editRole(){
 	$(":input[name='role.roleName']","#roleForm").val($.fn.zTree.getZTreeObj("roleTree").getSelectedNodes()[0].name);
 	$("#roleForm").dialog({
-		modal:true,
 		title:'编辑角色',
-		buttonAlign:'center',
-		show:'flod',
-		hide: "explode",
 		buttons:[{
 			text:'保存',
+			css:"btn btn-primary",
 			click:function(){
 				$("#roleForm").ajaxSubmitForm(contextPath+"/role/update",{"role.id":$.fn.zTree.getZTreeObj("roleTree").getSelectedNodes()[0].id},
 						function(){
@@ -122,6 +116,7 @@ function editRole(){
 			}
 		},{
 			text:'取消',
+			css:"btn",
 			click:function(){
 				$("#roleForm").dialog("close");
 				$("#roleForm").reset();
@@ -169,15 +164,11 @@ function assignMenu(){
 	var menuNodes = [{name:'菜单管理',id:-1,isParent:true,checked:true}];
 	$.fn.zTree.init($("#menuTree"), menuTreeSetting,menuNodes);
 	$("#menuTree").dialog({
-		modal:true,
 		title:'分配菜单',
-		width:500,
-		buttonAlign:'center',
-		show:'flod',
-		hide: "explode",
 		buttons:[
 		         {
 					text:'保存',
+					css:"btn btn-primary",
 					click:function(){
 						var ids="",checkStatus="" ;
 						$.each($.fn.zTree.getZTreeObj("menuTree").getChangeCheckedNodes(),function(index,e){
@@ -192,6 +183,7 @@ function assignMenu(){
 		         },
 		         {
 					text:'取消',
+					css:"btn",
 					click:function(){
 						$("#menuTree").dialog("close");
 					}
@@ -238,6 +230,7 @@ function assignPermission(){
 		buttons:[
 		         {
 					text:'确定',
+					css:"btn btn-primary",
 					click:function(){
 						var ids = "",status="";
 						$($(grid).flexChangedRows()).each(function(){
@@ -254,6 +247,7 @@ function assignPermission(){
 		         },
 		         {
 					text:'取消',
+					css:"btn",
 					click:function(){
 						$(this).dialog("close");
 					}
