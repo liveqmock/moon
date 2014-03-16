@@ -35,4 +35,35 @@ public class FileUtils {
 		}
 	}
 	
+	/**
+	 * 获取文件后缀名
+	 * @param file
+	 * @return
+	 */
+	public static String getExtname(File file){
+		String name = file.getName();
+		int position = name.lastIndexOf(".");
+		if(position!=-1){
+			return name.substring(position+1);
+		}
+		return "";
+	}
+	
+	/**
+	 * 获取文件前缀名
+	 * @param file
+	 * @return
+	 */
+	public static String getPrefixName(File file){
+		String name = file.getName();
+		int position = name.lastIndexOf(".");
+		if(position!=-1){
+			return name.substring(0,position);
+		}
+		return "";
+	}
+	
+	public static void getFileNotExists(File ){
+		
+	}
 }

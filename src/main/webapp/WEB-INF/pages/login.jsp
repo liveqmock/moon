@@ -7,9 +7,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<m:require src="jquery,common,ev,font,bootstrap,noty,{login}"/>
+<m:require src="jquery,common,ev,font,bootstrap,noty,{login},webuploader"/>
 <script type="text/javascript">
 	var from = "${from}";
+	$(function(){
+		var uploader = moon.webuploader({
+			 pick: '#picker',
+			 server:contextPath+"/file/upload",
+			 fileVal:"file",
+			 fileQueued:function(f){
+				 this.makeThumb( f, function( error, src ) {
+		                if ( error ) {
+		                    $wrap.text( '不能预览' );
+		                    return;
+		                }
+
+		                var img = $('<img src="'+src+'">');
+		                $(".uploader-list").empty().append( img );
+		            }, 300,300 );
+			 }
+		});
+		$("#upload").click(function(){
+			uploader.upload();
+		});
+		
+	});
 </script>
 <title>Moon</title>
 </head>
@@ -19,7 +41,9 @@
 	<div class="system-info">用户名:System_user</div>
     <div class="system-info">密码：<m:systemUserPassword/></div>
 </div>
-
+ <div id="thelist" class="uploader-list"></div>
+<div id="picker"></div>
+<button id="upload">上传</button>
 
 <div class="form-container">
    

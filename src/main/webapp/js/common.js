@@ -170,7 +170,7 @@ $.fn.reset = function(){
 		return dfd.promise();
 	};
 	
-	var moon = {};
+	var moon = moon||{};
 	
 (function(m){
 	m.alert = function(options,layout){
@@ -234,6 +234,11 @@ $.fn.reset = function(){
 		return dfd.promise();
 	};
 	
+	/*************** 私有方法 ***********************/
+	
+	/**
+	 * 格式化通知noty参数,
+	 */
 	function formatParam(options){
 		if(typeof(options)=='string'){
 			options={text:options};
@@ -244,4 +249,6 @@ $.fn.reset = function(){
 	function _noty(op1,op2){
 		return noty($.extend({layout:"topCenter"},op1,op2));
 	}
+	
+	/*************** /私有方法 ***********************/
 })(moon);
