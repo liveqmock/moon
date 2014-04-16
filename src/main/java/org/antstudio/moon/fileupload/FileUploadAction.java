@@ -22,13 +22,12 @@ public class FileUploadAction {
 	 */
     @Post("/file/upload")
     public @ResponseBody String uploadFile(@RequestParam("file") MultipartFile[]  files) throws IOException{
-    	String ext = "";
     	for(MultipartFile file:files){
     		File f = new File(SessionContext.getWebAppPath()+"upload/"+file.getOriginalFilename());
     		if(f.exists()){
     			f = new File(SessionContext.getWebAppPath()+"upload/"+file.getOriginalFilename());
     		}
-    		FileUtils.save(file.getInputStream(), );
+    		FileUtils.save(file.getInputStream(),FileUtils.getFileNotExists(f));
     	}
         return "";
     }
